@@ -1,5 +1,3 @@
-zyy0626
-=======
 #include<stdio.h>
 #include<malloc.h>
 #include<string.h>
