@@ -27,3 +27,46 @@ Linklist* creat_node()
    } 
    return temp;
 }
+Linklist* find(int num,Linklist* p)
+{
+   while(p!=NULL)
+   {
+    if(p->number==num)
+    return p;
+    p=p->next;
+   }  
+   return NULL;   
+}
+void delete(int num,Linklist* p)
+{
+   Linklist *pre=p;
+   while(p!=NULL)
+   {
+     if(p->number==num)
+     {
+      pre->next=p->next;
+      free(p);
+      break;
+     }
+    pre=p;
+    p=p->next;
+   }  
+}
+void insert(int num,Linklist* p)
+{
+    Linklist *pre,*new;
+    while(p!=NULL)
+    {
+     if(p->number==num)
+     {
+      printf("Input number and name:\n");
+      new=(Linklist*)malloc(sizeof(Linklist));
+      scanf("%d%s",&(new->number),new->name);
+      pre->next=new;
+      new->next=p;
+      break;
+     }
+     pre=p;
+     p=p->next;
+    }
+}
