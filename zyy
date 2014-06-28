@@ -70,3 +70,75 @@ void insert(int num,Linklist* p)
      p=p->next;
     }
 }
+Linklist* reverse(Linklist *h)
+{
+     Linklist *p,*q,*r,*t;
+     if (!h->next ) 
+     return;            
+     p=h->next; 
+     q=p->next;       
+     while (q) 
+     {   
+       r=q->next ;     
+       q->next=p ;    
+       p=q ; 
+       q=r ;       
+     } 
+     h->next->next=h;     
+     h->next=NULL;   
+     return p;
+}
+int main()
+{
+     Linklist *p=NULL,*head=NULL;
+     int num,f=0;  
+     while(f!=7)
+     { 
+       p=head;
+       printf("choose function:\n 1.creat\n 2.find\n 3.delete\n 4.insert\n 5.showall\n 6.reverse\n 7.exit\n");
+       scanf("%d",&f);
+       switch(f)
+       {
+         case 1 :
+          p=creat_node();
+          head=p;
+          break;
+         case 2 :
+          printf("input number:\n");
+          scanf("%d",&num);
+          p=find(num,p);
+          if(p!=NULL)
+           printf("name is %s\n",p->name);
+          else
+           printf("find none!\n"); 
+          break;
+         case 3 :
+          printf("input number:\n");
+          scanf("%d",&num);
+          delete(num,p);
+          break;
+         case 4 :
+          printf("input number:\n");
+          scanf("%d",&num);
+          insert(num,p);
+          break;
+         case 5 :
+          printf("number name\n");
+          while(p!=NULL)
+           {
+             printf("%d      %s\n",p->number,p->name);
+             p=p->next;
+           } 
+          break;
+         case 6 :
+          head=reverse(p);
+          break;  
+        }
+     }
+     while(p!=NULL)
+     {
+       free(p);
+       p=p->next;
+      }  
+     return 0;
+}
